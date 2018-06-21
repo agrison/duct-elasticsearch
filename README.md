@@ -62,7 +62,7 @@ and [sniffer documentation](https://mpenet.github.io/spandex/qbits.spandex.html#
 The ES REST client can be extracted from this module Boundary by using the `:client` key.
 
 ```clojure
-(ns my-project.boundary.search-db
+(ns my-project.boundary.entry-db
   (:require [duct.database.elasticsearch.spandex]
             [qbits.spandex :as s]))
             
