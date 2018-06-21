@@ -57,6 +57,23 @@ For more information about Spandex client options you can see their
 [client documentation](https://mpenet.github.io/spandex/qbits.spandex.html#var-client)
 and [sniffer documentation](https://mpenet.github.io/spandex/qbits.spandex.html#var-sniffer)
 
+## Example
+
+```clojure
+(ns my-project.boundary.search-db
+  (:require [duct.database.elasticsearch.spandex]
+            [qbits.spandex :as s]))
+            
+(defprotocol SearchDatabase
+  (search [db]))
+  
+(extend-protocol SearchDatabase
+  duct.database.elasticsearch.spandex.Boundary
+  (search [{:keys [client]}]
+    (s/request client {:url "/entries/entry/_search"
+                       :method :get
+                       :body {:query {:match_all {}}}})))
+```
 
 ## License
 
